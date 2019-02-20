@@ -10,3 +10,5 @@ class AddBill extends React.Component {
     );
   }
 }
+
+export default AddBill;

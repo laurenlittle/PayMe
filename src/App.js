@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import logo from './payme_logo.svg';
+import logo from './assets/badge.svg';
 import './App.css';
+import { Router, Link } from "@reach/router";
+import GetStarted from "./components/GetStarted/GetStarted";
+import AddBill from "./components/AddBill/AddBill";
+import BillsList from "./components/BillsList/BillsList";
 
 class App extends Component {
   render() {
@@ -8,18 +12,18 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <Link to="/"> <h2 className="App-logo-text"> PayMe </h2> </Link >
+
         </header>
+        <div className="main-container">
+          <div className="center-container">
+            <Router>
+              <GetStarted path="/" />
+              <AddBill path = "/add-bill" />
+              <BillsList path="/bills-list"/>
+            </Router>
+          </div>
+        </div>
       </div>
     );
   }
