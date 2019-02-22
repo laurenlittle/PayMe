@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './assets/badge.svg';
+import logo from './assets/logo.png';
 import './App.css';
 import { Router, Link } from "@reach/router";
 import GetStarted from "./components/GetStarted/GetStarted";
@@ -12,8 +12,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Link to="/"> <h2 className="App-logo-text"> PayMe </h2> </Link >
-
+          <Link to="/"> <h1 className="App-logo-text"> PayMe </h1> </Link >
         </header>
         <div className="main-container">
           <div className="center-container">

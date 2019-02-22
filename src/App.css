@@ -17,11 +17,13 @@
   animation: App-logo-spin infinite 20s linear;
   height: 10vmin;
   pointer-events: none;
+  margin: 1% 2%;
 }
 
 .App-logo-text {
   display: inline-block;
-  color: #1db8ad;
+  color: #fff;
+  font-weight: normal;
 }
 
 @keyframes App-logo-spin {
