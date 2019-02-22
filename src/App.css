@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 .App {
-  /* background-color: #202020; */
-  background: url('./assets/jeremy-paige-146337-unsplash.jpg') center/cover;
+  background-image: linear-gradient(rgba(7, 44, 42, 0.74), rgba(7, 44, 42, 0.74)), url('./assets/jeremy-paige-146337-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
   color: #fdfdfd;
   height: 100vh;
   display: grid;
-  grid-template-rows: 10% 1fr;
+  grid-template-rows: [header] 10% [main-container] 1fr;
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
@@ -20,6 +21,7 @@
 
 .App-logo-text {
   display: inline-block;
+  color: #1db8ad;
 }
 
 @keyframes App-logo-spin {
@@ -32,29 +34,24 @@
 }
 
 .App-header {
-  grid-row: 1/2;
-  background-color: #fdfdfd;
+  grid-row: header;
   color: #202020;
-  box-shadow: 0 1px 8px #efefef;
-  font-family: 'Open Sans', sans-serif;
-  /* min-height: 100vh; */
-  /* font-size: calc(10px + 2vmin); */
-}
-
-.App-link {
-  color: #1db8ad;
 }
 
 .main-container {
-  grid-row: 2/3;
+  grid-row: main-container;
   display: grid;
-  background: #1db8ad33;
 }
 
 .center-container {
-  /* background: #1db8ad; */
-  background: rgba(68, 68, 68, 0.75);
   margin: 20px auto;
+  padding: 14px;
+  background: rgba(10, 10, 10, 0.3);
+  border-radius: 10px;
+
 }
 
+/* background: #1db8ad33; */
+/* background: rgba(68, 68, 68, 0.75); */
+/* rgba(15, 97, 92, 0.74) */
 

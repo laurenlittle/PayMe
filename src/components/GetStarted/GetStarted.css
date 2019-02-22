@@ -1,0 +1,52 @@
+.get-started {
+  text-align: center;
+  font-weight: 900;
+  margin-top: 15%;
+}
+
+.welcome-message-header {
+  color: white;
+  font-size: 2rem;
+}
+
+p {
+  margin: 0;
+}
+
+.button-wrapper {
+  margin-top: 20%;
+}
+
+button {
+  padding: 8px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  background: rgba(15, 97, 92, 0.74);
+  color: #fdfdfd;
+  border-color: #2e4644;
+  transition: ease-in-out 0.3s;
+  min-width: 40%;
+}
+
+button:hover {
+  background: #fdfdfd;
+  color: rgba(15, 97, 92, 0.74);
+}
+
+.sign-in-btn {
+  -webkit-border-top-left-radius: 50px;
+  -webkit-border-bottom-left-radius: 50px;
+  -moz-border-radius-topleft: 50px;
+  -moz-border-radius-bottomleft: 50px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
+.sign-up-btn {
+   -webkit-border-top-right-radius: 50px;
+   -webkit-border-bottom-right-radius: 50px;
+   -moz-border-radius-topright: 50px;
+   -moz-border-radius-bottomright: 50px;
+   border-top-right-radius: 50px;
+   border-bottom-right-radius: 50px;
+}
