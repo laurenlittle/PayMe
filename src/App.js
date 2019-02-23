@@ -7,6 +7,34 @@ import AddBill from "./components/AddBill/AddBill";
 import BillsList from "./components/BillsList/BillsList";
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "",
+      amount: Number,
+      due: Date,
+      paid: false
+    }
+  }
+
+  handleBillNameChange = event => {
+    this.setState({
+      name: event.target.value
+    });
+  }
+  handleBillAmountChange = event => {
+    this.setState({
+      amount: event.target.value
+    });
+  }
+  handleBillDueChange = event => {
+    this.setState({
+      due: event.target.value
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -18,8 +46,18 @@ class App extends Component {
           <div className="center-container">
             <Router>
               <GetStarted path="/" />
-              <AddBill path = "/add-bill" />
-              <BillsList path="/bills-list"/>
+              <AddBill
+                path = "/add-bill"
+                handleBillNameChange={this.handleBillNameChange}
+                handleBillAmountChange={this.handleBillAmountChange}
+                handleBillDueChange={this.handleBillDueChange}
+                {...this.state} />
+              <BillsList
+                path="/bills-list"
+                handleBillNameChange={this.handleBillNameChange}
+                handleBillAmountChange={this.handleBillAmountChange}
+                handleBillDueChange={this.handleBillDueChange}
+                {...this.state} />
             </Router>
           </div>
         </div>

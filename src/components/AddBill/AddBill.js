@@ -3,33 +3,6 @@ import './AddBill.css';
 
 class AddBill extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: "",
-      amount: Number,
-      due: Date,
-      paid: false
-    }
-  }
-
-  handleBillNameChange = event => {
-    this.setState({
-      name: event.target.value
-    });
-  }
-  handleBillAmountChange = event => {
-    this.setState({
-      amount: event.target.value
-    });
-  }
-  handleBillDueChange = event => {
-    this.setState({
-      due: event.target.value
-    });
-  }
-
   render() {
     return(
       <div>
@@ -40,9 +13,9 @@ class AddBill extends React.Component {
           <input
             id="bill-name"
             type = "text"
-            value={this.state.name}
-            onChange={this.handleBillNameChange}
-            onBlur={this.handleBillNameChange}
+            value={this.props.name}
+            onChange={this.props.handleBillNameChange}
+            onBlur={this.props.handleBillNameChange}
             placeholder="Billing Company Name" required/>
           </label>
           <br/>
@@ -51,10 +24,10 @@ class AddBill extends React.Component {
             Amount:
             <input
               id="bill-amount"
-              type = "number"
-              value={this.state.amount}
-              onChange={this.handleBillAmountChange}
-              onBlur={this.handleBillAmountChange}
+              type="text"
+              value={this.props.amount}
+              onChange={this.props.handleBillAmountChange}
+              onBlur={this.props.handleBillAmountChange}
               placeholder="Amount Due"
               required />
           </label>
@@ -64,10 +37,10 @@ class AddBill extends React.Component {
             Due Date:
             <input
               id="bill-due-date"
-              value={this.state.due}
+              value={this.props.due}
               type="date"
-              onChange={this.handleBillDueChange}
-              onBlur={this.handleBillDueChange} required/>
+              onChange={this.props.handleBillDueChange}
+              onBlur={this.props.handleBillDueChange} required/>
           </label>
           <br/>
           <br/>
