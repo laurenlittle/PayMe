@@ -1,7 +1,15 @@
 import React from 'react';
 import './AddBill.css';
+import { navigate } from "@reach/router";
 
 class AddBill extends React.Component {
+
+  saveBill = event => {
+    event.preventDefault()
+    navigate("/bills-list");
+    var bill = [this.props.name, this.props.amount, this.props.due];
+    console.log(bill);
+  }
 
   render() {
     return(
@@ -44,7 +52,7 @@ class AddBill extends React.Component {
           </label>
           <br/>
           <br/>
-          <button> + Add Bill</button>
+          <button onClick={this.saveBill}> + Add Bill</button>
         </form>
       </div>
     );
