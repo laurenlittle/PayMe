@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './assets/logo.png';
 import './App.css';
-import { Router, Link } from "@reach/router";
+import { Router, Link, navigate } from "@reach/router";
 import GetStarted from "./components/GetStarted/GetStarted";
 import AddBill from "./components/AddBill/AddBill";
 import BillsList from "./components/BillsList/BillsList";
@@ -33,6 +33,12 @@ class App extends Component {
     this.setState({
       due: event.target.value
     });
+  }
+
+  saveBill = event => {
+    event.preventDefault()
+    navigate("/bills-list");
+    console.log(this.props.name, this.props.amount, this.props.due);
   }
 
   render() {
