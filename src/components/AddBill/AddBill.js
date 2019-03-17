@@ -34,9 +34,11 @@ class AddBill extends React.Component {
 
   render() {
     const { name, amount, dueDate } = this.state;
+
     return(
       <div>
         <h1>Click to submit and add a bill now!</h1>
+
         <form>
 
           <label htmlFor="bill-name">
@@ -79,6 +81,7 @@ class AddBill extends React.Component {
 
           <button onClick={ this.handleSubmit } disabled={ !name }> + Add Bill</button>
           <button onClick={()=> auth.signOut()}> Sign OUT!!!!! </button>
+
         </form>
       </div>
     );
