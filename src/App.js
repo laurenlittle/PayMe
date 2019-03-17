@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import logo from './assets/logo.png';
 import './App.css';
-import { Router, Link, navigate } from "@reach/router";
+import { Link } from "@reach/router";
 import GetStarted from "./components/GetStarted/GetStarted";
 import AddBill from "./components/AddBill/AddBill";
 import BillsList from "./components/BillsList/BillsList";
+import { auth } from './firebase';
+
 
 class App extends Component {
 
@@ -12,59 +14,41 @@ class App extends Component {
     super(props);
 
     this.state = {
-      name: "",
-      amount: Number,
-      due: Date,
-      paid: false
+      currentUser: null,
+      bills: null
     }
   }
 
-  handleBillNameChange = event => {
-    this.setState({
-      name: event.target.value
-    });
-  }
-  handleBillAmountChange = event => {
-    this.setState({
-      amount: event.target.value
-    });
-  }
-  handleBillDueChange = event => {
-    this.setState({
-      due: event.target.value
-    });
-  }
+  componentDidMount() {
+    auth.onAuthStateChanged((currentUser) => {
+      console.log('AUTH STATUS', currentUser);
 
-  saveBill = event => {
-    event.preventDefault()
-    navigate("/bills-list");
-    console.log(this.props.name, this.props.amount, this.props.due);
+      this.setState({
+        currentUser
+      });
+    });
   }
 
   render() {
+
+    const {currentUser} = this.state;
+
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Link to="/"> <h1 className="App-logo-text"> PayMe </h1> </Link >
+          <Link to="/"> <h1 className="App-logo-text"> PayMe </h1> </Link>
         </header>
         <div className="main-container">
           <div className="center-container">
-            <Router>
-              <GetStarted path="/" />
-              <AddBill
-                path = "/add-bill"
-                handleBillNameChange={this.handleBillNameChange}
-                handleBillAmountChange={this.handleBillAmountChange}
-                handleBillDueChange={this.handleBillDueChange}
-                {...this.state} />
-              <BillsList
-                path="/bills-list"
-                handleBillNameChange={this.handleBillNameChange}
-                handleBillAmountChange={this.handleBillAmountChange}
-                handleBillDueChange={this.handleBillDueChange}
-                {...this.state} />
-            </Router>
+          { !currentUser && <GetStarted /> }
+          {
+            currentUser &&
+            <>
+              <AddBill user={currentUser}/>
+              <BillsList user={currentUser}/>
+            </>
+          }
           </div>
         </div>
       </div>
