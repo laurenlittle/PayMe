@@ -7,30 +7,45 @@ class Bill extends React.Component {
     super(props);
 
     this.state = {
-      data: null
+      data: []
     }
 
     this.currentUser = this.props.user;
     this.userID = this.props.user.uid;
 
     // If this pathway has a value, take a snapshot of it.
-   this.myData = database.ref(`/billsList/${this.userID}/`).on('value', (snapshot) => {
-     console.log(' IS THIS MY DATA', snapshot.val());
-   })
+    this.userData = database.ref(`/billsList/${this.userID}/`);
+  }
 
-   console.log(this.myData);
+  componentDidMount() {
+
+    this.userData.on('value', (snapshot) => {
+
+      this.setState({ data: snapshot.val() })
+    })
   }
 
   render() {
+    const { data } = this.state;
+    console.log(data);
+
+    if (!this.state.data.length)
+      return null;
+
+    let billName = this.state.data.map((el, i) => (
+            <li key={i}> {el.name} {el.amount} {el.dueDate} </li>
+    ))
 
     return(
       <div>
-        {/* <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul> */}
+
+        <pre>
+          { JSON.stringify(data, null, 2) }
+        </pre>
+
+        <ul>
+          {billName}
+        </ul>
 
       </div>
     )
