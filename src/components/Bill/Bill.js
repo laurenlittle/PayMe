@@ -27,24 +27,20 @@ class Bill extends React.Component {
 
   render() {
     const { data } = this.state;
-    console.log(data);
+    console.log('Bill.js', data.length);
 
-    if (!this.state.data.length)
+    if (!data.length)
       return null;
 
-    let billName = this.state.data.map((el, i) => (
+    let billInfo = data.map((el, i) => (
             <li key={i}> {el.name} {el.amount} {el.dueDate} </li>
     ))
 
     return(
       <div>
 
-        <pre>
-          { JSON.stringify(data, null, 2) }
-        </pre>
-
         <ul>
-          {billName}
+          {billInfo}
         </ul>
 
       </div>
