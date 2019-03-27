@@ -12,20 +12,34 @@ class AddBill extends React.Component {
       amount: undefined,
       dueDate: undefined,
       paid: false,
-      billId: 0 // maybe set this to start at the last number that's set in the DB, or maybe it shouldn't be in state and it should be moved somewhere else.
+      billId: undefined
     }
 
     this.currentUser = this.props.user.uid;
+    this.billsListForUser = database.ref(`/billsList/${this.currentUser}/`);
+  }
+
+  componentDidMount() {
+
+    this.billsListForUser.on('value', (snapshot) => {
+
+      const billId = snapshot.val().length;
+
+      this.setState({
+        billId
+      })
+    })
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.billsList = database.ref(`/billsList/${this.currentUser}/${this.state.billId}`);
 
-    this.billsList.child('name').set(this.state.name);
-    this.billsList.child('amount').set(this.state.amount);
-    this.billsList.child('dueDate').set(this.state.dueDate);
-    this.billsList.child('paid').set(this.state.paid);
+    const newBill = database.ref(`/billsList/${this.currentUser}/${this.state.billId}`);
+
+    newBill.child('name').set(this.state.name);
+    newBill.child('amount').set(this.state.amount);
+    newBill.child('dueDate').set(this.state.dueDate);
+    newBill.child('paid').set(this.state.paid);
 
     this.setState({
       billId: this.state.billId + 1
