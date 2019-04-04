@@ -1,38 +1,26 @@
 import React from 'react';
-import { database } from '../../firebase';
+// import { database } from '../../firebase';
 
 
 class Bill extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      data: []
-    }
-
-    this.currentUser = this.props.user;
-    this.userID = this.props.user.uid;
-
-    // If this pathway has a value, take a snapshot of it.
-    this.userData = database.ref(`/billsList/${this.userID}/`);
+    this.data = this.props.billData;
+    console.log(this.props)
   }
 
   componentDidMount() {
-
-    this.userData.on('value', (snapshot) => {
-
-      this.setState({ data: snapshot.val() })
-    })
+    console.log(this.props)
   }
 
   render() {
-    const { data } = this.state;
-    console.log('Bill.js', data.length);
+    console.log('lakdsjfaljf', this.props.data);
 
-    if (!data.length)
+    if (!this.data.length)
       return null;
 
-    let billInfo = data.map((el, i) => (
+    let billInfo = this.data.map((el, i) => (
             <li key={i}> {el.name} {el.amount} {el.dueDate} </li>
     ))
 
