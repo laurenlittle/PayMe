@@ -1,20 +1,26 @@
 import React from 'react';
 import './BillsList.css';
-import { Link } from "@reach/router";
+import  Bill from '../Bill/Bill';
 
 class BillsList extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentUser: this.props.user
+    }
+  }
+
   render() {
+    const { currentUser } = this.state;
+
     return (
-      <div>
-        <h1>Here will be a list of your bills</h1>
-        <p>{this.props.allBills}</p>
-        <p>{this.props.name}</p>
-        <p>{this.props.amount}</p>
-        <p>{this.props.due}</p>
-        <Link to = "/add-bill">
-          <button> + Add Another Bill</button>
-        </Link>
-      </div>
+      <>
+        <h1> Here will be a list of your bills </h1>
+        <h3> Map through the db and for each bill - create Bill component </h3>
+        <Bill user={currentUser}/>
+      </>
     );
   }
 }

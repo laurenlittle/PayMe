@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link } from "@reach/router";
 import './GetStarted.css';
+import { auth, googleAuthProvider } from '../../firebase';
 
 class GetStarted extends React.Component {
   render() {
@@ -13,10 +13,7 @@ class GetStarted extends React.Component {
         <p>Receive alerts when bills are due.</p>
 
         <div className="button-wrapper">
-            <Link to = "/add-bill">
-              <button className="sign-in-btn">Sign In</button>
-            </Link>
-          <button className="sign-up-btn">Sign Up</button>
+              <button className="sign-in-btn" onClick={()=> auth.signInWithPopup(googleAuthProvider)}>Sign In</button>
         </div>
       </div>
     );
